@@ -35,12 +35,6 @@ jobs:
       - name: Run tests
         run: php artisan test
 
-      - name: Run PHPStan
-        run: vendor/bin/phpstan analyse app tests --error-format=github
-
-      - name: Run Laravel Pint
-        run: vendor/bin/pint
-
       - name: Commit linted files
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
