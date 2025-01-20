@@ -10,15 +10,15 @@ use Tests\TestCase;
 
 class OrderControllerTest extends TestCase
 {
-    //use RefreshDatabase;
+    use RefreshDatabase;
 
-    /*public function setUp(): void
+    public function setUp(): void
     {
         parent::setUp();
         $this->actingAs(User::factory()->create());
-    }*/
+    }
 
-    /*public function test_it_requires_products_array()
+    public function test_it_requires_products_array()
     {
         $response = $this->postJson('/api/orders', []);
 
@@ -66,5 +66,5 @@ class OrderControllerTest extends TestCase
         ]);
 
         $response->assertStatus(200)->assertJson(['message' => 'Order failed']);
-    }*/
+    }
 }
