@@ -10,13 +10,13 @@ use Tests\TestCase;
 
 class OrderControllerTest extends TestCase
 {
-    use RefreshDatabase;
+    //use RefreshDatabase;
 
-    public function setUp(): void
+    /*public function setUp(): void
     {
         parent::setUp();
         $this->actingAs(User::factory()->create());
-    }
+    }*/
 
     /*public function test_it_requires_products_array()
     {
@@ -36,7 +36,7 @@ class OrderControllerTest extends TestCase
 
         $response->assertStatus(403);
         $response->assertJsonValidationErrors(['products.0.id', 'products.1.quantity']);
-    }*/
+    }
 
     public function test_it_creates_order_successfully_with_valid_data()
     {
@@ -49,13 +49,13 @@ class OrderControllerTest extends TestCase
         ]);
 
         $response->assertStatus(200);
-        /*$this->assertDatabaseHas('orders', [
+        $this->assertDatabaseHas('orders', [
             'user_id' => auth()->id(),
             'total_price' => 200,
-        ]);*/
+        ]);
     }
 
-    /*public function test_it_does_not_create_order_on_exception()
+    public function test_it_does_not_create_order_on_exception()
     {
         $product = Product::factory()->create(['stock' => 10]);
 
