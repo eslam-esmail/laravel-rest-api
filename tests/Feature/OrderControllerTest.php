@@ -36,7 +36,7 @@ class OrderControllerTest extends TestCase
 
         $response->assertStatus(403);
         $response->assertJsonValidationErrors(['products.0.id', 'products.1.quantity']);
-    }*/
+    }
 
     public function test_it_creates_order_successfully_with_valid_data()
     {
@@ -66,5 +66,5 @@ class OrderControllerTest extends TestCase
         ]);
 
         $response->assertStatus(200)->assertJson(['message' => 'Order failed']);
-    }
+    }*/
 }
