@@ -1,0 +1,36 @@
+name: Deploy Laravel Application
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set Up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H your_server_ip >> ~/.ssh/known_hosts
+
+      - name: Deploy Application
+        run: |
+          ssh root@your_server_ip \
+            "cd /var/www/project_directory && \
+            git pull origin main && \
+            composer install --no-dev --optimize-autoloader && \
+            php artisan migrate --force && \
+            php artisan config:cache && \
+            php artisan route:cache && \
+            php artisan view:cache && \
+            supervisorctl restart all"
